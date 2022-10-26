@@ -223,7 +223,7 @@ public class Main {
 					
 
 					switch (select2) {
-					
+					//Factorial
 					case 1:
 						System.out.println("Enter num to find factorial");
 						int num1 = sc.nextInt();
@@ -231,6 +231,7 @@ public class Main {
 						System.out.println("Factorial num:"+ num1 + "is:" + factorial);
 						break;
 						
+					//Fibonacci	
 					case 2:
 						int numFib = 0;
 						int numFib1 = 1;
