@@ -114,7 +114,7 @@ public class Main {
 		
 		//userInput
 		String userName= "Manal";
-		int password = 1234;
+		int password = 1997;
 		
 		
 		 
@@ -122,6 +122,7 @@ public class Main {
 		
 
 		do {
+			System.out.println("*****")
 			System.out.println("_______________________________________________");
 			System.out.println("Select Option");
 			System.out.println("1.Enter Student");
