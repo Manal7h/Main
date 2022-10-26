@@ -95,6 +95,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		boolean isExit = true;
+		//CodingProblem
 		boolean isExitMainMenue = true;
 
 		System.out.println("Enter Number of Student you want:");
