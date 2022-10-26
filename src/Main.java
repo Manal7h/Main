@@ -104,7 +104,7 @@ public class Main {
 		int num = sci.nextInt();
 		Student std[] = new Student[num];
 
-		
+		//HashSet
 		Set<String> uniqueEmailSet = new HashSet<String>(); //Set doesn't accept duplicated values 
 		ArrayList<String> emailArrayList = new ArrayList<>();
 		
