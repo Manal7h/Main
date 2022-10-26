@@ -111,6 +111,11 @@ public class Main {
 		double feesAmount = 0;
 		double amountCal = 0;
 		double amount;
+		
+		String userName= "Manal";
+		int password = 1234;
+		
+		
 		 
 		 
 		
@@ -146,7 +151,7 @@ public class Main {
 			case 4:
 				Boolean x= true;
 				while(x) {
-				System.out.println("Enter Email: ");
+				System.out.println("Enter your Email: ");
 				String stuEmail = sc.next();
 				stk.push(stuEmail);
 				emailArrayList.add(stuEmail);
@@ -243,15 +248,10 @@ public class Main {
 							}
 						break;
 						
-					case 3:
-								
-							
-					
-						isExitMainMenue=false;	
+					case 3:	
 						
+						isExitMainMenue=false;		
 					}
-					
-				
 				}
 					
 					while(isExitMainMenue);
