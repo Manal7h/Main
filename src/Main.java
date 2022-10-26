@@ -11,7 +11,6 @@ import java.util.*;
 public class Main {
 	
 	//Factorial 
-
 	public static BigInteger factorialNum(int num1) {
 		BigInteger factor = new BigInteger("1");
 		for(int i=2 ; i<= num1 ; i++) {
