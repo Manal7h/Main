@@ -172,6 +172,7 @@ public class Main {
 				break;
 
 			case 5:
+				//Map
 				Map<String, Double> currencyMap = new HashMap<>();
 				Map<String, Map<String, Double>> comparisioMap = new HashMap<>();
 				
