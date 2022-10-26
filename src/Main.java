@@ -112,6 +112,7 @@ public class Main {
 		double amountCal = 0;
 		double amount;
 		
+		//userInput
 		String userName= "Manal";
 		int password = 1234;
 		
