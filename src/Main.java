@@ -336,7 +336,6 @@ public class Main {
 					//BackMenue	
 					case 3:	
 						isExitMainMenue=false;	
-						//break;
 					}
 				}
 					
@@ -363,49 +362,9 @@ public class Main {
 			catch(Exception e) {
 				System.out.println("Exception : "+ e.getMessage()); 	
 			}
-		
-			
-			//isExitLogin=false;
+
 				}
 
-
-    // while (isExitLogin);
 			}
 }
-		
-			
-		
-			
-
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
-	//}
-			//}
-			//catch(Exception pass) {
-				//System.out.println("login failed please try again");
-			//}	
-		//}
-		//isExitLogin=false;	
-
 		
