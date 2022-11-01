@@ -1,7 +1,11 @@
 
-public class Mark {
+public class Mark implements IMark {
 	private int math;
 	private int enghlish;
+	
+	public void pass() {
+		System.out.println("You Pass");
+	}
 
 	public void setMath(int mark) {
 		if (mark > 0 & mark < 100) {

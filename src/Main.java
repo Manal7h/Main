@@ -33,17 +33,28 @@ public class Main {
 			
 			//Student Name
 			System.out.println("Enter Student Name");
+			//try {
 			String studentName = sc.nextLine();
 			std[i].setStName(studentName);
 			stk.push(studentName);
+			//}
+			//catch(Exception e) {
+			//	System.out.println("Exception : "+ e.getMessage()); 	
+			//}
 			
 			//Mark
+			//boolean markTrue = true;
+			///while(markTrue) {
+			//try {
 			System.out.println("Enter Mark for Math");
 			Integer m1 = sc.nextInt();
 			String m = Integer.toString(m1);
 			//int m1 = Integer.toString(m);
 			stk.push(m);
-			
+			//}
+			//catch(Exception e) {
+			//System.out.println("Exception : "+ e.getMessage());
+			//}
 			
 			//Mark
 			System.out.println("Enter Mark for English");
@@ -88,6 +99,8 @@ public class Main {
 
 			Cours cours = new Cours();
 			Mark mark = new Mark();
+			
+			
 			School school = new School();
 			Student student = new Student();
 			
@@ -100,16 +113,20 @@ public class Main {
 			student.setCours(cours);
 			school.setStudent(student);
 			student.setStudentEmail(stuEmail);
+			//student.work();
+			
+			
 
 			System.out.println("Student in School:" + student.getStName() + "\n" + "Math Mark is "
 					+ student.getCours().getMark().getMath());
 			System.out.println("Enghlish Mark is:" + student.getCours().getMark().getEnghlish() + " " + student.getStudentEmail());
+			mark.pass();
 			
 
 		}
 
 		return std;
-	}
+	}//Student
 	
 	//print
 	static void printList(Student studentList[]) {
@@ -158,13 +175,9 @@ public class Main {
 		boolean isExitLogin=true;
 		//boolean isExitProgram=true;
 		
-		//userInput
-		//String userName= "Manal";
-		//int password = 1997;
-		
+
+		//UserName&PassWord
 		while(isExitLogin) { //use to go inside the loop once the condition true
-			
-			
 			try {
 			System.out.println(" please Enter username");
 			String loginUserName=sc.next();
@@ -346,9 +359,11 @@ public class Main {
 				isExit=false;
 				break;
 			}
-			}while(isExit);
+		}//Do
 		
-				}
+		while(isExit);
+		
+				}//if userName&passWord
 				
 
 				else if (!loginUserName.matches(UserName) && !loginPassword.matches(Password));
@@ -356,15 +371,15 @@ public class Main {
 				}
 				System.out.println("Invalid userName and password pls try again");		
 				
-			}
+			}//try*userName
 		
 				
 			catch(Exception e) {
 				System.out.println("Exception : "+ e.getMessage()); 	
 			}
 
-				}
+				}//while(isExitLogin)
 
-			}
-}
+			}//main 
+}//Main
 		
