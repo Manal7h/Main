@@ -143,20 +143,20 @@ public class Main {
 	
 	
 	//Factorial 
-	public static BigInteger factorialNum(int num1) {
-		BigInteger factor = new BigInteger("1");
-		for(int i=2 ; i<= num1 ; i++) {
-			factor= factor.multiply(BigInteger.valueOf(i));
-		}
-		return factor;
-	}
+//	public static BigInteger factorialNum(int num1) {
+//		BigInteger factor = new BigInteger("1");
+//		for(int i=2 ; i<= num1 ; i++) {
+//			factor= factor.multiply(BigInteger.valueOf(i));
+//		}
+//		return factor;
+//	}
 
 	
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		boolean isExit = true;
-		boolean isExitMainMenue = true;
+//		boolean isExitMainMenue = true;
 
 		System.out.println("Enter Number of Student you want:");
 		Scanner sci = new Scanner(System.in);
@@ -169,9 +169,9 @@ public class Main {
 		ArrayList<String> emailArrayList = new ArrayList<>();
 		
 		
-		double feesAmount = 0;
-		double amountCal = 0;
-		double amount;
+//		double feesAmount = 0;
+//		double amountCal = 0;
+//		double amount;
 		boolean isExitLogin=true;
 		//boolean isExitProgram=true;
 		
@@ -243,117 +243,20 @@ public class Main {
 				break;
 
 			case 4:
-				Boolean x= true;
-				while(x) {
-				System.out.println("Enter your Email: ");
-				String stuEmail = sc.next();
-				stk.push(stuEmail);
-				emailArrayList.add(stuEmail);
-				System.out.println("1 if you want cont, 0 if not");
-				Integer d = sc.nextInt();
-				if(d == 0) {
-					x = false;
-					
-					}
-				
-				}
-
-				for (String email : emailArrayList) {
-					if (uniqueEmailSet.add(email) == false) {
-						System.out.println("Duplicate this email" +" -->" + email);
-					}	
-				}
-				
-				
-				break;
+	
+				Email myEmail = new Email();
+				myEmail.EmailS();
 
 			case 5:
-				//Map
-				Map<String, Double> currencyMap = new HashMap<>();
-				Map<String, Map<String, Double>> comparisioMap = new HashMap<>();
-				
-				String currencyName="";
-				System.out.println("Enter student name who want to convert:");
-				String studentConversiName = sc.next();
-				stk.push(studentConversiName);
-				System.out.println("Choose currency you want to convert" + "1. KUD" + "2. AED" + "3. USD");
-				int currency = sc.nextInt();
-				String m=Integer.toString(currency);
-				stk.push(m);
-				System.out.println("please insert fees amount");
-				feesAmount = sc.nextDouble();
-				String s1 = Double.toString(feesAmount);
-				stk.push(s1);
-				
-				if(currency == 1) {
-					amountCal= feesAmount *0.80;
-					Math.round(amountCal);
-					currencyName = "KUD";
-				}
-				else if(currency == 2) {
-					amountCal= feesAmount *9.54;
-					currencyName = "AED";
-					
-				}
-				
-				else if(currency == 3) {
-					amountCal= feesAmount *2.60;
-					currencyName = "USD";
-					
-				}
-				
-				currencyMap.put(currencyName, amountCal);
-				comparisioMap.put(studentConversiName, currencyMap);
-				System.out.println(currencyMap);
-				System.out.println(comparisioMap);
-				
-				break;
+				Currency myCurrency = new Currency();
+				myCurrency.currencyN();
 				
 			case 6:
+				
+				CodingProblemMenue myCodingPM = new CodingProblemMenue();
+				myCodingPM.CodingProblemM();
 			    
-				do {
-					System.out.println("Coding Problem");
-					System.out.println("1.Find the Factorial");
-					System.out.println("2.Fibonacci");
-					System.out.println("3. Back to the main menue");
-					int select2 = sc.nextInt();
-					
 
-					switch (select2) {
-					//Factorial
-					case 1:
-						System.out.println("Enter num to find factorial");
-						int num1 = sc.nextInt();
-						BigInteger factorial = factorialNum(num1);
-						System.out.println("Factorial num:"+ num1 + "is:" + factorial);
-						break;
-						
-					//Fibonacci	
-					case 2:
-						int numFib = 0;
-						int numFib1 = 1;
-						int numFib3;
-						System.out.println("Enter  Fibonacci length");
-						int series = sc.nextInt();
-						System.out.println(numFib +""+numFib1 );
-						for(int i=2; i>series; i++){
-							numFib3=numFib+numFib1;
-							if(series<=100) {
-								System.out.println(""+numFib3);	
-								numFib=numFib1;
-								numFib1=numFib3;
-							}
-							}
-						break;
-						
-					//BackMenue	
-					case 3:	
-						isExitMainMenue=false;	
-					}
-				}
-					
-				while(isExitMainMenue);
-				break;
 			
 			case 7:
 				isExit=false;
