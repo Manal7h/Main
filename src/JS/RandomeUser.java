@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 public class RandomeUser implements Serializable {
 	public static void main(String[] args) {
 	HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://randomuser.me/api"))
+			.uri(URI.create("https://randomuser.me/api/?results=2"))
 			.method("GET", HttpRequest.BodyPublishers.noBody())
 			.build();
 	HttpResponse<String> response = null;
@@ -31,6 +31,7 @@ public class RandomeUser implements Serializable {
 	System.out.println("Info-Version:" +" "+ data.getInfo().getVersion());
 	
 	System.out.println("Results-Gender:" +" "+ data.getResults().get(0).getGender());
+	System.out.println("Results-Gender:" +" "+ data.getResults().get(1).getGender());
 
 }
 }
