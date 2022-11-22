@@ -1,6 +1,8 @@
 package JS;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable{
 	private String uuid;
 	private String username;
 	private String password;
@@ -8,6 +10,8 @@ public class Login {
 	private String md5;
 	private String sha1;
 	private String sha256;
+	
+	
 	public String getUuid() {
 		return uuid;
 	}

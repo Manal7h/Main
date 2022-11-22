@@ -1,20 +1,24 @@
 package JS;
 
-public class Coordinates {
-	private float latitude;
-	private float longitude;
-	public float getLatitude() {
+import java.io.Serializable;
+
+public class Coordinates implements Serializable{
+	private String latitude;
+	private String longitude;
+	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(float latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public float getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(float longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+
+	
 	
 	
 	

@@ -1,10 +1,15 @@
 package JS;
 
-public class Info {
+import java.io.Serializable;
+
+public class Info implements Serializable  {
 	private String seed;
 	private int results;
 	private int page;
-	private float version;
+	private String version;
+	
+	
+	
 	public String getSeed() {
 		return seed;
 	}
@@ -23,12 +28,14 @@ public class Info {
 	public void setPage(int page) {
 		this.page = page;
 	}
-	public float getVersion() {
+	public String getVersion() {
 		return version;
 	}
-	public void setVersion(float version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
+
+	
 	
 	
 }

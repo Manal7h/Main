@@ -1,10 +1,11 @@
 package JS;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ApiJS {
-	private List<Results> results;
-	private String info;
+public class ApiJS implements Serializable{
+	List<Results> results;
+	private Info info;
 	
 	
 	public List<Results> getResults() {
@@ -13,14 +14,14 @@ public class ApiJS {
 	public void setResults(List<Results> results) {
 		this.results = results;
 	}
-	
-	public String getInfo() {
+	public Info getInfo() {
 		return info;
 	}
-	public void setInfo(String info) {
+	public void setInfo(Info info) {
 		this.info = info;
 	}
 	
+
 	
 	
 }

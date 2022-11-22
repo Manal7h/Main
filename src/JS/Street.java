@@ -1,8 +1,12 @@
 package JS;
 
-public class Street {
+import java.io.Serializable;
+
+public class Street implements Serializable {
 	private int number;
 	private String name;
+	
+	
 	public int getNumber() {
 		return number;
 	}

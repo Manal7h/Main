@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class CodingProblemMenue {
+public class CodingProblemMenue implements Serializable{
 	
 	public static BigInteger factorialNum(int num1) {
 		BigInteger factor = new BigInteger("1");

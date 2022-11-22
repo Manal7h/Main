@@ -1,20 +1,26 @@
 package JS;
 
-public class Id {
+import java.io.Serializable;
+
+public class Id implements Serializable{
 	private String name;
-	private int value;
+	private String value;
+	
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
+
+		
 	
 	
 	

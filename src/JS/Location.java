@@ -1,11 +1,12 @@
 package JS;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable{
 	private String city;
 	private String state;
 	private String country;
 	private String postcode;
-	
 	
 	Street street;
 	Coordinates coordinates;
