@@ -9,36 +9,34 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 
 public class RandomeUser implements Serializable {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		
 		System.out.println("Enter num user: ");
 		Scanner sc = new Scanner(System.in);
 		Integer results = sc.nextInt();	
 		
 
-	if(results==0) {
-		HttpRequest request = HttpRequest.newBuilder()
+	if(results==0){
+		 HttpClient Client=HttpClient.newHttpClient();
+		 HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://randomuser.me/api/"))
-				.method("GET", HttpRequest.BodyPublishers.noBody())
+//				.("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
-		HttpResponse<String> response = null;
+		HttpResponse<String> response = Client.send(request,HttpResponse.BodyHandlers.ofString()) ;
 		System.out.println(response.body());
-		ApiJS data=new Gson().fromJson();
-	
-		
-//		try {
-//			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println(response.body());
-//		ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
-	
+		ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
 	}
+	
 	else {
-	    for (int i = 0; i < results; i++) { 
+	    for (Integer i = 0; i < results; i++){
+	    	HttpClient Client=HttpClient.newHttpClient();
+	    	HttpRequest request = HttpRequest.newBuilder()
+					.uri(URI.create("https://randomuser.me/api/"+results))
+//					.method("GET", HttpRequest.BodyPublishers.noBody())
+					.build();
+	    	HttpResponse<String> response =Client.send(request,HttpResponse.BodyHandlers.ofString());
+	    	ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
+	    
 	System.out.println("This is Json Data:");
 	System.out.println("Info-Results:" +" "+ data.getInfo().getResults());
 	System.out.println("Info-Version:" +" "+ data.getInfo().getVersion());
