@@ -20,10 +20,12 @@ public class RandomeUser implements Serializable {
 			String password = sc.next();
 			System.out.println("Enter Seed:");
 			String seed = sc.next();
+			System.out.println("Enter Page num:");
+			Integer page = sc.nextInt();
 	
 			
 	HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://randomuser.me/api/?password="+password+"&seed="+seed))
+			.uri(URI.create("https://randomuser.me/api/?password="+password+ "&seed=" +seed +"?page="+page))
 			.method("GET", HttpRequest.BodyPublishers.noBody())
 			.build();
 	HttpResponse<String> response = null;
@@ -44,13 +46,12 @@ public class RandomeUser implements Serializable {
 	
 	for (int i = 0; i < results; i++) { 
 	System.out.println("This is Json Data:");
-	System.out.println("Info-Page:" +" "+ data.getInfo().getPage());
 	System.out.println("Info-Results:" +" "+ data.getInfo().getResults());
-	System.out.println("Info-Seed:" +" "+ data.getInfo().getSeed());
 	System.out.println("Info-Version:" +" "+ data.getInfo().getVersion());
 	System.out.println("Results-Gender:" +" "+ data.getResults().get(0).getGender());
-	System.out.println("password:" +" "+ data.getResults().get(0).getLogin().getPassword());
-	System.out.println("seed:" +" "+ data.getInfo().getSeed());
+	System.out.println("Results-Password:" +" "+ data.getResults().get(0).getLogin().getPassword());
+	System.out.println("Info-Seed:" +" "+ data.getInfo().getSeed());
+	System.out.println("Info-Page:" +" "+ data.getInfo().getPage());
 	}
 
 }
