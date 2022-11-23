@@ -6,7 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
-
 import com.google.gson.Gson;
 
 public class RandomeUser implements Serializable {
@@ -39,11 +38,10 @@ public class RandomeUser implements Serializable {
 	System.out.println(response.body());
 	ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
 	
-
-	
-
-	
-	
+	if(results==0) {
+		
+		
+	}
 	for (int i = 0; i < results; i++) { 
 	System.out.println("This is Json Data:");
 	System.out.println("Info-Results:" +" "+ data.getInfo().getResults());
