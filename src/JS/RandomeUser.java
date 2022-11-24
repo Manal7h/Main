@@ -43,12 +43,14 @@ public class RandomeUser implements Serializable {
     	String seed = sc.next();
     	System.out.println("Enter Page num:");
     	Integer page = sc.nextInt();
+    	System.out.println("Enter nationality:");
+    	String nat = sc.next();
     	
 	    for (Integer i = 0; i < results; i++){
 	    	
 	    	HttpClient Client=HttpClient.newHttpClient();
 	    	HttpRequest request = HttpRequest.newBuilder()
-					.uri(URI.create("https://randomuser.me/api/?results="+results+"&password="+password+"&seed"+seed+"&psge"+page))
+					.uri(URI.create("https://randomuser.me/api/?results="+results+"&password="+password+"&seed"+seed+"&psge"+page+"&nat"+nat))
 //					.method("GET", HttpRequest.BodyPublishers.noBody())
 					.build();
 	    	HttpResponse<String> response =Client.send(request,HttpResponse.BodyHandlers.ofString());
