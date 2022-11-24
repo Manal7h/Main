@@ -19,40 +19,51 @@ public class RandomeUser implements Serializable {
 	if(results==0){
 		 HttpClient Client=HttpClient.newHttpClient();
 		 HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create("https://randomuser.me/api/"))
+				.uri(URI.create("https://randomuser.me/api/?results=50"))
 //				.("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
 		HttpResponse<String> response = Client.send(request,HttpResponse.BodyHandlers.ofString()) ;
 		System.out.println(response.body());
 		ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
+		for (Integer i = 0; i < response.body().length(); i++){
+			System.out.println("This is Json Data:");
+			System.out.println("Info-Results:" +" "+ data.getInfo().getResults());
+			System.out.println("Info-Version:" +" "+ data.getInfo().getVersion());
+			System.out.println("Results-Gender:" +" "+ data.getResults().get(i).getGender());
+			System.out.println("Results-Password:" +" "+ data.getResults().get(i).getLogin().getPassword());
+			System.out.println("Info-Seed:" +" "+ data.getInfo().getSeed());
+			System.out.println("Info-Page:" +" "+ data.getInfo().getPage());
+		}
 	}
 	
 	else {
+		System.out.println("Which Password you want to appear:");
+    	String password = sc.next();
+    	System.out.println("Enter Seed:");
+    	String seed = sc.next();
+    	System.out.println("Enter Page num:");
+    	Integer page = sc.nextInt();
+    	
 	    for (Integer i = 0; i < results; i++){
+	    	
 	    	HttpClient Client=HttpClient.newHttpClient();
 	    	HttpRequest request = HttpRequest.newBuilder()
-					.uri(URI.create("https://randomuser.me/api/"+results))
+					.uri(URI.create("https://randomuser.me/api/?results="+results+"&password="+password+"&seed"+seed+"&psge"+page))
 //					.method("GET", HttpRequest.BodyPublishers.noBody())
 					.build();
 	    	HttpResponse<String> response =Client.send(request,HttpResponse.BodyHandlers.ofString());
 	    	ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
-	    
+	    	
+	    	
 	System.out.println("This is Json Data:");
 	System.out.println("Info-Results:" +" "+ data.getInfo().getResults());
 	System.out.println("Info-Version:" +" "+ data.getInfo().getVersion());
-	System.out.println("Results-Gender:" +" "+ data.getResults().get(0).getGender());
-	System.out.println("Results-Password:" +" "+ data.getResults().get(0).getLogin().getPassword());
+	System.out.println("Results-Gender:" +" "+ data.getResults().get(i).getGender());
+	System.out.println("Results-Password:" +" "+ data.getResults().get(i).getLogin().getPassword());
 	System.out.println("Info-Seed:" +" "+ data.getInfo().getSeed());
 	System.out.println("Info-Page:" +" "+ data.getInfo().getPage());
 	}
 	}
-	
-	System.out.println("Which Password you want to appear:");
-	String password = sc.next();
-	System.out.println("Enter Seed:");
-	String seed = sc.next();
-	System.out.println("Enter Page num:");
-	Integer page = sc.nextInt();
 
 }
 }
