@@ -1,18 +1,31 @@
 package JS;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
+import java.util.Stack;
+
+import org.xml.sax.ErrorHandler;
+
 import com.google.gson.Gson;
 
 public class RandomeUser implements Serializable {
 	public static void main(String[] args) throws IOException, InterruptedException {
+
 		
-		System.out.println("Enter num user: ");
+
+		
+		boolean isExit=true;
 		Scanner sc = new Scanner(System.in);
+		
+		while(isExit) {
+		System.out.println("Enter num user: ");
 		Integer results = sc.nextInt();	
 		
 
@@ -22,11 +35,13 @@ public class RandomeUser implements Serializable {
 		    .uri(URI.create("https://randomuser.me/api/?results=50"))
 		    .build();
 		    HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+		    String gg=response.body();
+		    Gson json=new Gson();
 		    ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
 		    
 		    
 		    
-		    for(Integer i=0; i<= response.body().length();i++) {
+		    for(Integer i=0; i<= gg.length();i++) {
 			System.out.println("Email:        "+data.getResults().get(i).getEmail());
 			System.out.println("gender:       "+data.getResults().get(i).getGender());
 			System.out.println("nat:          "+data.getResults().get(i).getNat());
@@ -34,11 +49,13 @@ public class RandomeUser implements Serializable {
 			System.out.println("seed:         "+data.getInfo().getSeed());
 			//System.out.println("results:      "+data.getInfo().getResults());
 			System.out.println("page:         "+data.getInfo().getPage());
-			System.out.println("**********************************************************\n \n \n");
+			
+			
+
 		    }
 	}
     	else {
-//    	   
+ 	   
     		System.out.println("Enter gender: ");
     		String gender = sc.next();
     		System.out.println("Enter seed: ");
@@ -49,23 +66,47 @@ public class RandomeUser implements Serializable {
     		String password = sc.next();
     		System.out.println("Enter page: ");
     		Integer page = sc.nextInt();
+    		//stk.push(page);
     		
     		System.out.println("enter 1 to exc or 2 to inc");
 		    Integer choice = sc.nextInt();
-        	if( choice==1) {
+		    
+		//exclude    
+        if( choice==1) {
 		    	 System.out.println("enter type you want to exc");
 		    	 String exc = sc.next();
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder()
-		.uri(URI.create("https://randomuser.me/api/?results="+results+"&gender="+gender+"&password="+password+"&seed="+seed+ "&nat="+nat+ "&page="+page+"&exc="+exc))
-		.build();
-		HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-		ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
+		    	 
+		    	 for(Integer i=0; i<choice ;i++) {
+		    	 HttpClient client = HttpClient.newHttpClient();
+		    	 HttpRequest request = HttpRequest.newBuilder()
+		    			 .uri(URI.create("https://randomuser.me/api/?results="+results+"&gender="+gender+"&password="+password+"&seed="+seed+ "&nat="+nat+ "&page="+page+"&exc="+exc))
+		    			 .build();
+		    	
+		    	 
+		    
+		    	// ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
+		 HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+		     String gg=response.body();
+             if(gg.contains("error")) {
+                   System.out.println("there is Error! ");
+                 Gson json=new Gson();
+                 ErrorHandler error=json.fromJson(gg, ErrorHandler.class);
+                   System.out.println(error.getError());
+             }
+             else {
+            Gson json=new Gson();
+           
+            try {
+                FileWriter file = new FileWriter("API.txt");
+                file.write(gg);
+                file.close();
+             } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+             }
+             System.out.println("JSON file created: "+gg);
+			
 		
-		     
-
-		
-		for(Integer i=0; i<results ;i++) {
 			if(data.getResults().get(i).getEmail()!=null) {
 		System.out.println("Email:        "+data.getResults().get(i).getEmail());}
 			
@@ -83,8 +124,10 @@ public class RandomeUser implements Serializable {
 
 		}
         	}
-        	
-        	else {
+        }
+        
+        //include
+        else {
 			System.out.println("enter type you want to inc");
 			String inc = sc.next();
 			HttpClient Client=HttpClient.newHttpClient();
@@ -116,9 +159,27 @@ public class RandomeUser implements Serializable {
         	 }
     	}
     }
-	
-
   }
+    System.out.println("If you want to exit 0 and 1 to continue");
+	Integer exit=sc.nextInt();
+		if(exit==0) {
+     		 isExit=false;
+     		 System.out.println("Good bye");
+      
+		}
+		else {
+      isExit=true;
+			}
+
+ 
+}
+}
+
+
+
+
+
+
 //			for(Integer i=0; i<results ;i++) {
 //   			 HttpClient client = HttpClient.newHttpClient();
 //   			    HttpRequest request = HttpRequest.newBuilder()
