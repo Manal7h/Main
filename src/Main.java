@@ -30,7 +30,6 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		for (int i = 0; i < num; i++) {
 			std[i] = new Student();
-			
 			//Student Name
 			System.out.println("Enter Student Name");
 			//try {

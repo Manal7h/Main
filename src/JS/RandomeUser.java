@@ -1,184 +1,200 @@
 package JS;
-import java.io.FileOutputStream;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.Reader;
 import java.io.Serializable;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
-import java.util.Stack;
-
 import org.xml.sax.ErrorHandler;
-
 import com.google.gson.Gson;
 
 public class RandomeUser implements Serializable {
 	public static void main(String[] args) throws IOException, InterruptedException {
 
-		
-
-		
-		boolean isExit=true;
+		Boolean isExit = true;
 		Scanner sc = new Scanner(System.in);
-		
-		while(isExit) {
-		System.out.println("Enter num user: ");
-		Integer results = sc.nextInt();	
-		
 
-	if(results==0){
-		 HttpClient client = HttpClient.newHttpClient();
-		    HttpRequest request = HttpRequest.newBuilder()
-		    .uri(URI.create("https://randomuser.me/api/?results=50"))
-		    .build();
-		    HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-		    String gg=response.body();
-		    Gson json=new Gson();
-		    ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
-		    
-		    
-		    
-		    for(Integer i=0; i<= gg.length();i++) {
-			System.out.println("Email:        "+data.getResults().get(i).getEmail());
-			System.out.println("gender:       "+data.getResults().get(i).getGender());
-			System.out.println("nat:          "+data.getResults().get(i).getNat());
-			System.out.println("password:     "+data.getResults().get(i).getLogin().getPassword());
-			System.out.println("seed:         "+data.getInfo().getSeed());
-			//System.out.println("results:      "+data.getInfo().getResults());
-			System.out.println("page:         "+data.getInfo().getPage());
-			
-			
+		while (isExit) {
+			System.out.println("Enter num user: ");
+			Integer results = sc.nextInt();
 
-		    }
-	}
-    	else {
- 	   
-    		System.out.println("Enter gender: ");
-    		String gender = sc.next();
-    		System.out.println("Enter seed: ");
-    		String seed = sc.next();
-    		System.out.println("Enter nat: ");
-    		String nat = sc.next();
-    		System.out.println("Enter password: ");
-    		String password = sc.next();
-    		System.out.println("Enter page: ");
-    		Integer page = sc.nextInt();
-    		//stk.push(page);
-    		
-    		System.out.println("enter 1 to exc or 2 to inc");
-		    Integer choice = sc.nextInt();
-		    
-		//exclude    
-        if( choice==1) {
-		    	 System.out.println("enter type you want to exc");
-		    	 String exc = sc.next();
-		    	 
-		    	 for(Integer i=0; i<choice ;i++) {
-		    	 HttpClient client = HttpClient.newHttpClient();
-		    	 HttpRequest request = HttpRequest.newBuilder()
-		    			 .uri(URI.create("https://randomuser.me/api/?results="+results+"&gender="+gender+"&password="+password+"&seed="+seed+ "&nat="+nat+ "&page="+page+"&exc="+exc))
-		    			 .build();
-		    	
-		    	 
-		    
-		    	// ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
-		 HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-		     String gg=response.body();
-             if(gg.contains("error")) {
-                   System.out.println("there is Error! ");
-                 Gson json=new Gson();
-                 ErrorHandler error=json.fromJson(gg, ErrorHandler.class);
-                   System.out.println(error.getError());
-             }
-             else {
-            Gson json=new Gson();
-           
-            try {
-                FileWriter file = new FileWriter("API.txt");
-                file.write(gg);
-                file.close();
-             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-             }
-             System.out.println("JSON file created: "+gg);
-			
-		
-			if(data.getResults().get(i).getEmail()!=null) {
-		System.out.println("Email:        "+data.getResults().get(i).getEmail());}
-			
-			if(data.getResults().get(i).getGender()!=null) {
-		System.out.println("gender:       "+data.getResults().get(i).getGender());}
-			
-			if(data.getResults().get(i).getNat()!=null) {
-		System.out.println("nat:          "+data.getResults().get(i).getNat());}
-			
-		if(data.getResults().get(i).getLogin()!=null && data.getResults().get(i).getLogin().getPassword()!=null) {
-			System.out.println("password:     "+data.getResults().get(i).getLogin().getPassword());}
-	
-		if(data.getInfo().getSeed()!=null) {
-			System.out.println("Seed:     "+data.getInfo().getSeed());}
+			if (results == 0) {
+				HttpClient client = HttpClient.newHttpClient();
+				HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://randomuser.me/api/?results=0"))
+						.build();
+				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+				String gg = response.body();
+				Gson json = new Gson();
+				ApiJS data = new Gson().fromJson(gg, ApiJS.class);
 
-		}
-        	}
-        }
-        
-        //include
-        else {
-			System.out.println("enter type you want to inc");
-			String inc = sc.next();
-			HttpClient Client=HttpClient.newHttpClient();
-	    	HttpRequest request = HttpRequest.newBuilder()
-					.uri(URI.create("https://randomuser.me/api/?results="+results+"&password="+password+"&seed="+seed+"&psge="+page+"&nat="+nat+"&inc="+inc))
-//					.method("GET", HttpRequest.BodyPublishers.noBody())
-					.build();
+				for (Integer i = 0; i <= gg.length(); i++) {
+					System.out.println("Email:        " + data.getResults().get(i).getEmail());
+					System.out.println("gender:       " + data.getResults().get(i).getGender());
+					System.out.println("nat:          " + data.getResults().get(i).getNat());
+					System.out.println("password:     " + data.getResults().get(i).getLogin().getPassword());
+					System.out.println("seed:         " + data.getInfo().getSeed());
+					System.out.println("page:         " + data.getInfo().getPage());
+				}
+			} else {
 
-	    	HttpResponse<String> response =Client.send(request,HttpResponse.BodyHandlers.ofString());
-	    	ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
-			
-			for(Integer i=0; i<results ;i++) {
-				if(data.getResults().get(i).getEmail()!=null) {
-			System.out.println("Email:        "+data.getResults().get(i).getEmail());}
-				
-				if(data.getResults().get(i).getGender()!=null) {
-			System.out.println("gender:       "+data.getResults().get(i).getGender());}
-				
-				if(data.getResults().get(i).getNat()!=null) {
-			System.out.println("nat:          "+data.getResults().get(i).getNat());}
-				
-			if(data.getResults().get(i).getLogin()!=null && data.getResults().get(i).getLogin().getPassword()!=null) {
-				System.out.println("password:     "+data.getResults().get(i).getLogin().getPassword());}
-		
-			if(data.getInfo().getSeed()!=null) {
-				System.out.println("Seed:     "+data.getInfo().getSeed());}
-			
+				System.out.println("Enter gender: ");
+				String gender = sc.next();
+				System.out.println("Enter seed: ");
+				String seed = sc.next();
+				System.out.println("Enter nat: ");
+				String nat = sc.next();
+				System.out.println("Enter password: ");
+				String password = sc.next();
+				System.out.println("Enter page: ");
+				Integer page = sc.nextInt();
+				System.out.println("enter 1 to exc or 2 to inc");
+				Integer choice = sc.nextInt();
+
+				// exclude
+				if (choice == 1) {
+					System.out.println("enter type you want to exc");
+					String exc = sc.next();
+
+//		    	 for(Integer i=0; i<choice ;i++) {
+
+					HttpClient client = HttpClient.newHttpClient();
+					HttpRequest request = HttpRequest.newBuilder()
+							.uri(URI.create("https://randomuser.me/api/?results=" + results + "&gender=" + gender
+									+ "&password=" + password + "&seed=" + seed + "&nat=" + nat + "&page=" + page
+									+ "&exc=" + exc))
+							.build();
+					HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+					String gg = response.body();
+
+					// ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
+
+					if (gg.contains("error")) {
+						System.out.println("there is Error!");
+						Gson json = new Gson();
+						RandomErrorHandler error = json.fromJson(gg, RandomErrorHandler.class);
+						System.out.println(error.getError());
+						// error.getError());
 					}
-        	 }
-    	}
-    }
-  }
-    System.out.println("If you want to exit 0 and 1 to continue");
-	Integer exit=sc.nextInt();
-		if(exit==0) {
-     		 isExit=false;
-     		 System.out.println("Good bye");
-      
-		}
-		else {
-      isExit=true;
+
+					// file write
+					else {
+						Gson json = new Gson();
+
+						try {
+							FileWriter file = new FileWriter("API.txt");
+							file.write(gg);
+							file.close();
+						}
+
+						catch (IOException e) {
+							e.printStackTrace();
+						}
+						System.out.println("JSON file created: " + gg);
+
+						// file reader
+						Reader read = new BufferedReader(new FileReader("API.txt"));
+						ApiJS data = new Gson().fromJson(read, ApiJS.class);
+
+						for (Integer i = 0; i < data.getResults().size(); i++) {
+							if (data.getResults().get(i).getEmail() != null) {
+								System.out.println("Email:        " + data.getResults().get(i).getEmail());
+							}
+
+							if (data.getResults().get(i).getGender() != null) {
+								System.out.println("gender:       " + data.getResults().get(i).getGender());
+							}
+
+							if (data.getResults().get(i).getNat() != null) {
+								System.out.println("nat:          " + data.getResults().get(i).getNat());
+							}
+
+							if (data.getResults().get(i).getLogin() != null
+									&& data.getResults().get(i).getLogin().getPassword() != null) {
+								System.out
+										.println("password:     " + data.getResults().get(i).getLogin().getPassword());
+							}
+
+							if (data.getInfo().getSeed() != null) {
+								System.out.println("Seed:     " + data.getInfo().getSeed());
+							}
+						}
+
+					}
+				}
+
+				// (included ,exclude )loop
+				else {
+					System.out.println("enter type you want to inc");
+					String inc = sc.next();
+					for (Integer i = 0; i < results; i++) {
+
+						HttpClient Client = HttpClient.newHttpClient();
+						HttpRequest request = HttpRequest.newBuilder()
+								.uri(URI.create("https://randomuser.me/api/?results=" + results + "&password="
+										+ password + "&seed=" + seed + "&psge=" + page + "&nat=" + nat + "&inc=" + inc))
+//					.method("GET", HttpRequest.BodyPublishers.noBody())
+								.build();
+
+						HttpResponse<String> response = Client.send(request, HttpResponse.BodyHandlers.ofString());
+						// ApiJS data=new Gson().fromJson(response.body(),ApiJS.class);
+						String gg = response.body();
+						if (gg.contains("error")) {
+							System.out.println("there is Error! ");
+							Gson json = new Gson();
+							RandomErrorHandler error = json.fromJson(gg, RandomErrorHandler.class);
+							System.out.println(error.getError());
+						} else {
+							Gson json = new Gson();
+							ApiJS data = new Gson().fromJson(response.body(), ApiJS.class);
+
+							if (data.getResults().get(0).getEmail() != null) {
+								System.out.println("Email:        " + data.getResults().get(0).getEmail());
+							}
+
+							if (data.getResults().get(0).getGender() != null) {
+								System.out.println("gender:       " + data.getResults().get(0).getGender());
+							}
+
+							if (data.getResults().get(0).getNat() != null) {
+								System.out.println("nat:          " + data.getResults().get(0).getNat());
+							}
+
+							if (data.getResults().get(0).getLogin() != null
+									&& data.getResults().get(0).getLogin().getPassword() != null) {
+								System.out
+										.println("password:     " + data.getResults().get(0).getLogin().getPassword());
+							}
+
+							if (data.getInfo().getSeed() != null) {
+								System.out.println("Seed:     " + data.getInfo().getSeed());
+							}
+
+						}
+					}
+				}
 			}
+		}
 
- 
+		System.out.println("If you want to exit 0 and 1 to continue");
+		Integer exit = sc.nextInt();
+		if (exit == 0) {
+			isExit = false;
+
+			System.out.println("Exit");
+
+		} else {
+
+			isExit = true;
+		}
+
+	}
 }
-}
-
-
-
-
-
 
 //			for(Integer i=0; i<results ;i++) {
 //   			 HttpClient client = HttpClient.newHttpClient();
@@ -286,9 +302,3 @@ public class RandomeUser implements Serializable {
 //    			System.out.println("nat:          "+data3.getResults().get(0).getNat());}
 //    			if(data3.getResults().get(0).getLogin().getPassword()!=null) {
 //    				System.out.println("password:     "+data3.getResults().get(0).getLogin().getPassword());}
- 		    
- 		    
- 		    
-	
-	   
-
